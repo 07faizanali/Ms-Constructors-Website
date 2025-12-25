@@ -1,238 +1,223 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import Lottie from "lottie-react";
 
+import {
+  AppWindow,
+  Globe,
+  Smartphone,
+  Cloud,
+  CheckCircle2,
+  ArrowRight,
+  Monitor,
+  BarChart2,
+  Code,
+  Zap,
+  Server,
+  Database,
+  Shield
+} from "lucide-react";
+
+// import techAnimation from "../assests/Lottie/UIUX Designer.json";
+// import bgVideo from "../assests/Video/hero-bg2.mp4";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ITServices() {
+const ITServices = () => {
+  const sectionRef = useRef(null);
 
+  /* ================= GSAP COUNTERS ================= */
   useEffect(() => {
-    gsap.utils.toArray(".fade-up").forEach((el) => {
+    const counters = document.querySelectorAll(".stat-number");
+
+    counters.forEach((counter) => {
+      const value = counter.getAttribute("data-value");
+
       gsap.fromTo(
-        el,
-        { y: 60, opacity: 0 },
+        counter,
+        { innerText: 0 },
         {
-          y: 0,
-          opacity: 1,
-          duration: 1,
+          innerText: value,
+          duration: 2,
           ease: "power3.out",
+          snap: { innerText: 1 },
           scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-          },
+            trigger: counter,
+            start: "top 85%"
+          }
         }
       );
     });
+
+    gsap.fromTo(
+      ".gsap-card",
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.15,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%"
+        }
+      }
+    );
   }, []);
 
+  const stats = [
+    { value: 500, label: "Projects Delivered", icon: <Monitor /> },
+    { value: 98, label: "Client Satisfaction", icon: <BarChart2 /> },
+    { value: 50, label: "Expert Developers", icon: <Code /> },
+    { value: 24, label: "Support Hours", icon: <Zap /> }
+  ];
+
+  const services = [
+    {
+      title: "SaaS & Installables",
+      icon: <AppWindow />,
+      items: ["CRM", "ERP", "HRM", "Billing", "POS"]
+    },
+    {
+      title: "Web Development",
+      icon: <Globe />,
+      items: ["Corporate Sites", "E-Commerce", "Portals", "CMS"]
+    },
+    {
+      title: "Mobile Apps",
+      icon: <Smartphone />,
+      items: ["Food App", "Taxi App", "Fitness App"]
+    },
+    {
+      title: "Cloud & Hosting",
+      icon: <Cloud />,
+      items: ["Cloud Servers", "Email Hosting", "VPN"]
+    }
+  ];
+
   return (
-    <div className="bg-[#f8fafc] text-[#0f172a] overflow-hidden">
+    <main className="relative min-h-screen bg-black text-white overflow-hidden">
 
-      {/* ================= HERO ================= */}
-      <section className="min-h-screen flex items-center px-6 md:px-20">
-        <div className="grid md:grid-cols-2 gap-14 items-center">
-          <div className="fade-up">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Enterprise IT Solutions <br />
-              <span className="text-blue-600">
-                That Drive Digital Growth
-              </span>
-            </h1>
+      {/* ================= VIDEO BACKGROUND ================= 
+       <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover opacity-40"
+        >
+          <source src={bgVideo} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/70" />
+      </div> */}
 
-            <p className="mt-6 text-lg text-gray-600 max-w-xl">
-              We deliver scalable software, cloud, AI and digital
-              transformation services to help businesses grow faster.
-            </p>
+      {/* ================= CONTENT ================= */}
+      <div className="relative z-10 container mx-auto px-6 pt-32">
 
-            <div className="mt-8 flex gap-4">
-              <button className="bg-blue-600 text-white px-7 py-3 rounded-full hover:bg-blue-700 transition">
-                Get Consultation
-              </button>
-              <button className="border border-blue-600 text-blue-600 px-7 py-3 rounded-full hover:bg-blue-50 transition">
-                Explore Services
-              </button>
-            </div>
-          </div>
+        {/* HERO */}
+        <div className="text-center mb-28">
+          <h1 className="text-4xl md:text-6xl font-extrabold">
+            <span className="text-orange-500">Premium</span> IT Solutions
+          </h1>
 
-          <div className="fade-up">
-            <img
-              src="https://images.unsplash.com/photo-1581090700227-1e37b190418e"
-              alt="IT Services"
-              className="rounded-3xl shadow-xl"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ================= STATS ================= */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
-          {[
-            ["10+", "Years Experience"],
-            ["250+", "Projects Delivered"],
-            ["60+", "Enterprise Clients"],
-            ["99%", "Client Satisfaction"],
-          ].map(([num, label], i) => (
-            <div key={i} className="fade-up">
-              <h3 className="text-4xl font-bold text-blue-600">{num}</h3>
-              <p className="mt-2 text-gray-600">{label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================= SERVICES ================= */}
-      <section className="py-24 px-6 md:px-20">
-        <h2 className="text-4xl font-bold text-center fade-up">
-          Our IT Services
-        </h2>
-
-        <div className="mt-16 grid md:grid-cols-3 gap-10">
-          {[
-            "Web & App Development",
-            "AI & Machine Learning",
-            "Cloud & DevOps",
-            "Cybersecurity",
-            "Enterprise Software",
-            "IT Consulting & Automation",
-          ].map((service, i) => (
-            <div
-              key={i}
-              className="fade-up bg-white rounded-2xl p-8 shadow hover:shadow-xl transition"
-            >
-              <h3 className="text-xl font-semibold">{service}</h3>
-              <p className="mt-3 text-gray-600">
-                Secure, scalable and future-ready IT solutions built
-                for enterprise growth.
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================= PROCESS ================= */}
-      <section className="py-24 bg-[#f1f5f9] px-6 md:px-20">
-        <h2 className="text-4xl font-bold text-center fade-up">
-          How We Work
-        </h2>
-
-        <div className="mt-16 max-w-5xl mx-auto grid md:grid-cols-4 gap-10">
-          {["Discover", "Design", "Develop", "Deliver"].map((step, i) => (
-            <div key={i} className="fade-up text-center">
-              <div className="w-16 h-16 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center text-xl font-bold">
-                {i + 1}
-              </div>
-              <h4 className="mt-4 font-semibold">{step}</h4>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================= INDUSTRIES ================= */}
-      <section className="py-24 px-6 md:px-20">
-        <h2 className="text-4xl font-bold text-center fade-up">
-          Industries We Serve
-        </h2>
-
-        <div className="mt-14 grid md:grid-cols-3 gap-8">
-          {[
-            "Healthcare",
-            "Finance",
-            "Real Estate",
-            "Education",
-            "Manufacturing",
-            "E-Commerce",
-          ].map((industry, i) => (
-            <div
-              key={i}
-              className="fade-up bg-white p-6 rounded-xl shadow"
-            >
-              <h4 className="font-semibold">{industry}</h4>
-              <p className="mt-2 text-gray-600 text-sm">
-                Industry-specific IT solutions designed for performance
-                and compliance.
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================= CASE STUDIES ================= */}
-      <section className="py-24 bg-[#0f172a] text-white px-6 md:px-20">
-        <h2 className="text-4xl font-bold text-center fade-up">
-          Case Studies
-        </h2>
-
-        <div className="mt-16 grid md:grid-cols-3 gap-10">
-          {[1, 2, 3].map((_, i) => (
-            <div
-              key={i}
-              className="fade-up bg-[#020617] rounded-2xl overflow-hidden shadow-lg"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7"
-                alt="Case Study"
-              />
-              <div className="p-6">
-                <h4 className="font-semibold">Enterprise Digital Upgrade</h4>
-                <p className="mt-2 text-gray-400 text-sm">
-                  Improved scalability, security, and operational efficiency.
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ================= TESTIMONIALS ================= */}
-      <section className="py-24 px-6 md:px-20">
-        <h2 className="text-4xl font-bold text-center fade-up">
-          What Clients Say
-        </h2>
-
-        <div className="mt-14 max-w-4xl mx-auto fade-up bg-white p-10 rounded-2xl shadow">
-          <p className="text-lg text-gray-600 italic">
-            “Their IT expertise helped us modernize our entire platform.
-            Reliable, secure and highly professional.”
+          <p className="text-gray-400 max-w-3xl mx-auto mt-6 text-lg">
+            High-performance software, scalable systems, and enterprise-grade technology.
           </p>
-          <h4 className="mt-4 font-semibold">
-            — Enterprise Client
-          </h4>
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            className="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-orange-500 hover:bg-orange-600 transition rounded-full text-black font-semibold"
+          >
+            Get Consultation <ArrowRight />
+          </motion.button>
         </div>
-      </section>
 
-      {/* ================= CTA ================= */}
-      <section className="py-24 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-center">
-        <h2 className="text-4xl font-bold fade-up">
-          Ready to Transform Your Business?
-        </h2>
-        <button className="mt-8 bg-white text-blue-600 px-10 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
-          Get Started Today
-        </button>
-      </section>
+        {/* LOTTIE
+        <div className="max-w-xs mx-auto mb-24">
+          <Lottie animationData={techAnimation} loop />
+        </div> */}
 
-      {/* ================= INQUIRY FORM ================= */}
-      <section className="py-24 px-6 md:px-20 bg-white">
-        <h2 className="text-4xl font-bold text-center fade-up">
-          Request a Consultation
-        </h2>
+        {/* STATS */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-32">
+          {stats.map((stat, i) => (
+            <div
+              key={i}
+              className="gsap-card bg-zinc-900/60 border border-orange-500/20 rounded-xl p-6 text-center backdrop-blur"
+            >
+              <div className="flex justify-center text-orange-500 mb-3">
+                {stat.icon}
+              </div>
 
-        <form className="mt-14 max-w-3xl mx-auto grid gap-6 fade-up">
-          <input className="border p-4 rounded-lg" placeholder="Full Name" />
-          <input className="border p-4 rounded-lg" placeholder="Email Address" />
-          <input className="border p-4 rounded-lg" placeholder="Phone Number" />
-          <textarea
-            className="border p-4 rounded-lg"
-            rows="4"
-            placeholder="Your Requirement"
-          />
-          <button className="bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition">
-            Submit Inquiry
-          </button>
-        </form>
-      </section>
+              <div
+                className="stat-number text-3xl font-bold text-orange-500"
+                data-value={stat.value}
+              >
+                0
+              </div>
 
-    
-    </div>
+              <div className="text-gray-400">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* SERVICES */}
+        <div ref={sectionRef} className="space-y-24">
+          {services.map((service, i) => (
+            <div key={i}>
+              <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+                <span className="text-orange-500">{service.icon}</span>
+                {service.title}
+              </h2>
+
+              <div className="grid md:grid-cols-3 gap-6">
+                {service.items.map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ scale: 1.05 }}
+                    className="gsap-card bg-zinc-900/60 border border-orange-500/20 rounded-lg p-5 flex gap-3 items-center hover:border-orange-500 transition"
+                  >
+                    <CheckCircle2 className="text-orange-500" />
+                    <span className="text-gray-300">{item}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* WHY US */}
+        <div className="mt-32 mb-24">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why Choose <span className="text-orange-500">Us</span>
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { icon: <Server />, title: "Modern Tech" },
+              { icon: <Database />, title: "Scalable Systems" },
+              { icon: <Shield />, title: "Enterprise Security" }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -8 }}
+                className="bg-zinc-900/60 border border-orange-500/20 p-8 rounded-xl text-center"
+              >
+                <div className="text-orange-500 flex justify-center mb-4">
+                  {item.icon}
+                </div>
+                <h3 className="text-xl font-semibold">{item.title}</h3>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </main>
   );
-}
+};
+
+export default ITServices;

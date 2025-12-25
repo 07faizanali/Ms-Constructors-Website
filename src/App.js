@@ -10,6 +10,8 @@ import CompanyOverview from "./pages/about/CompanyOverview";
 import CoreValues from "./pages/about/CoreValues";
 import VisionMission from "./pages/about/VissionMission";
 import Achievements from "./pages/about/Achievements";
+import DigitalMarketing from "./components/DigitalMarkiting";
+import WebDev from "./components/WebDev";
 import "./components/styles/globals.css";
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
 
         {/* Services */}
         <Route path="/it-services" element={<ITServices />} />
+        <Route path="/digital-marketing" element={<DigitalMarketing />} />
+        <Route path="/web-development" element={<WebDev />} />
         <Route path="/designing" element={<Designing />} />
         <Route path="/construction" element={<Construction />} />
 

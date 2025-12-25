@@ -25,15 +25,15 @@ export default function NavBar() {
         {/* Logo */}
         <div className="flex flex-col leading-tight">
           <Link to="/">
-            <h1 className="text-lg md:text-xl font-bold text-black">INNOVEX</h1>
+            <h1 className="text-lg md:text-xl font-bold text-white">INNOVEX</h1>
           </Link>
-          <span className="text-xs font-medium text-gray-700">
+          <span className="text-xs font-medium text-green-700">
             Powered by MS Constructor
           </span>
         </div>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-6 text-black font-medium text-sm">
+        <ul className="hidden md:flex items-center gap-6 text-white font-medium text-sm">
           <li className="px-3 py-1 rounded-full hover:bg-white/30">
             <Link to="/">Home</Link>
           </li>
@@ -43,16 +43,16 @@ export default function NavBar() {
             About Us
             <ul className="absolute top-8 left-0 w-56 bg-white rounded-xl shadow-xl p-3
                           opacity-0 invisible group-hover:visible group-hover:opacity-100 transition">
-              <li className="px-3 py-2 rounded-md hover:bg-gray-100">
+              <li className="px-3 py-2 rounded-md text-black hover:bg-gray-100">
                 <Link to="/about/company-overview">Company Overview</Link>
               </li>
-              <li className="px-3 py-2 rounded-md hover:bg-gray-100">
+              <li className="px-3 py-2 rounded-md text-black hover:bg-gray-100">
                 <Link to="/about/core-values">Core Values</Link>
               </li>
-              <li className="px-3 py-2 rounded-md hover:bg-gray-100">
+              <li className="px-3 py-2 rounded-md text-black hover:bg-gray-100">
                 <Link to="/about/vision-mission">Vision & Mission</Link>
               </li>
-              <li className="px-3 py-2 rounded-md hover:bg-gray-100">
+              <li className="px-3 py-2 rounded-md text-black hover:bg-gray-100">
                 <Link to="/about/achievements">Achievements</Link>
               </li>
             </ul>
@@ -63,13 +63,13 @@ export default function NavBar() {
             Services
             <ul className="absolute top-8 left-0 w-52 bg-white rounded-xl shadow-xl p-3
                           opacity-0 invisible group-hover:visible group-hover:opacity-100 transition">
-              <li className="px-3 py-2 rounded-md hover:bg-gray-100">
+              <li className="px-3 py-2 rounded-md text-black hover:bg-gray-100">
                 <Link to="/it-services">IT Solutions</Link>
               </li>
-              <li className="px-3 py-2 rounded-md hover:bg-gray-100">
+              <li className="px-3 py-2 rounded-md text-black hover:bg-gray-100">
                 <Link to="/designing">Designing</Link>
               </li>
-              <li className="px-3 py-2 rounded-md hover:bg-gray-100">
+              <li className="px-3 py-2 rounded-md text-black hover:bg-gray-100">
                 <Link to="/construction">Construction</Link>
               </li>
             </ul>
